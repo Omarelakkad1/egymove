@@ -1,0 +1,10 @@
+{
+  "name": "egymove",
+  "version": "1.0.0",
+  "description": "Egypt-focused logistics marketplace website.",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "start": "node server.js"
+  }
+}
