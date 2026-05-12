@@ -3,6 +3,7 @@ import { extname, join, normalize } from "node:path";
 import { fileURLToPath } from "node:url";
 import { createServer } from "node:http";
 
+const host = process.env.HOST || "127.0.0.1";
 const port = Number(process.env.PORT || 4173);
 const root = fileURLToPath(new URL(".", import.meta.url));
 
@@ -30,6 +31,6 @@ createServer((request, response) => {
   });
 
   createReadStream(filePath).pipe(response);
-}).listen(port, () => {
-  console.log(`Egymove site running at http://localhost:${port}`);
+}).listen(port, host, () => {
+  console.log(`Egymove site running at http://${host}:${port}`);
 });
