@@ -1,21 +1,19 @@
 import {
-  businessBenefits,
-  cityNodes,
+  footerLinks,
   heroMetrics,
-  liveMoves,
-  moveTypes,
   navItems,
-  opsSteps,
-  vehicleOptions,
+  services,
+  showcaseModes,
+  testimonials,
 } from "./data.js";
 import {
-  businessPanel,
-  fleetSection,
+  ctaSection,
   footer,
   header,
   hero,
-  moveGrid,
-  operationsSection,
+  servicesSection,
+  showcaseSection,
+  testimonialsSection,
 } from "./components.js";
 
 const app = document.querySelector("#app");
@@ -23,30 +21,32 @@ const app = document.querySelector("#app");
 app.innerHTML = `
   ${header(navItems)}
   <main>
-    ${hero(heroMetrics, cityNodes, liveMoves)}
-    ${moveGrid(moveTypes)}
-    ${fleetSection(vehicleOptions)}
-    ${operationsSection(liveMoves, opsSteps)}
-    ${businessPanel(businessBenefits)}
+    ${hero(heroMetrics)}
+    ${servicesSection(services)}
+    ${showcaseSection(showcaseModes)}
+    ${testimonialsSection(testimonials)}
+    ${ctaSection()}
   </main>
-  ${footer()}
+  ${footer(footerLinks)}
 `;
 
 const form = document.querySelector("#quote");
 const status = form.querySelector(".quote-status");
-const vehicleButtons = document.querySelectorAll("[data-vehicle]");
+const modeButtons = document.querySelectorAll("[data-mode]");
+const showcaseTargets = document.querySelectorAll("[data-showcase]");
+const parallaxItems = document.querySelectorAll("[data-parallax]");
+const revealItems = document.querySelectorAll(".reveal");
 
-let selectedVehicle = vehicleOptions[2].name;
+let selectedMode = showcaseModes[0];
 
-vehicleButtons.forEach((button) => {
-  if (button.dataset.vehicle === selectedVehicle) {
-    button.classList.add("is-selected");
-  }
-
+modeButtons.forEach((button) => {
   button.addEventListener("click", () => {
-    selectedVehicle = button.dataset.vehicle;
-    vehicleButtons.forEach((item) => item.classList.toggle("is-selected", item === button));
-    status.textContent = `${selectedVehicle} lane selected. Add route details to estimate the move.`;
+    selectedMode = showcaseModes[Number(button.dataset.mode)];
+    modeButtons.forEach((item) => item.classList.toggle("is-active", item === button));
+
+    showcaseTargets.forEach((target) => {
+      target.textContent = selectedMode[target.dataset.showcase];
+    });
   });
 });
 
@@ -58,5 +58,28 @@ form.addEventListener("submit", (event) => {
   const dropoff = data.get("dropoff") || "your drop-off";
   const itemSize = data.get("item-size");
 
-  status.textContent = `${itemSize} from ${pickup} to ${dropoff} is queued for the ${selectedVehicle} lane.`;
+  status.textContent = `${itemSize} from ${pickup} to ${dropoff} is ready for the ${selectedMode.vehicle} lane.`;
 });
+
+window.addEventListener("pointermove", (event) => {
+  const x = (event.clientX / window.innerWidth - 0.5) * 18;
+  const y = (event.clientY / window.innerHeight - 0.5) * 18;
+
+  parallaxItems.forEach((item) => {
+    item.style.setProperty("--parallax-x", `${x}px`);
+    item.style.setProperty("--parallax-y", `${y}px`);
+  });
+});
+
+const revealObserver = new IntersectionObserver(
+  (entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add("is-visible");
+      }
+    });
+  },
+  { threshold: 0.18 },
+);
+
+revealItems.forEach((item) => revealObserver.observe(item));

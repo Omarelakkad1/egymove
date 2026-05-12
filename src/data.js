@@ -1,119 +1,90 @@
 export const navItems = [
-  { label: "Moves", href: "#moves" },
-  { label: "Fleet", href: "#fleet" },
-  { label: "Live Ops", href: "#ops" },
-  { label: "Business", href: "#business" },
+  { label: "Services", href: "#services" },
+  { label: "Showcase", href: "#showcase" },
+  { label: "Stories", href: "#stories" },
+  { label: "Start", href: "#start" },
 ];
 
 export const heroMetrics = [
+  { value: "18", label: "Egypt zones" },
   { value: "4", label: "vehicle lanes" },
-  { value: "18", label: "city zones" },
-  { value: "24/7", label: "move desk" },
+  { value: "24/7", label: "ops desk" },
 ];
 
-export const cityNodes = [
-  { city: "Alex", detail: "coastal runs", className: "node-alex" },
-  { city: "Cairo", detail: "dense city moves", className: "node-cairo" },
-  { city: "Giza", detail: "furniture routes", className: "node-giza" },
-  { city: "New Cairo", detail: "retail drops", className: "node-new-cairo" },
-  { city: "October", detail: "warehouse lanes", className: "node-october" },
-];
-
-export const moveTypes = [
+export const services = [
   {
-    title: "Apartment pieces",
-    tag: "Sofa, fridge, bed",
-    description: "Bulky home items matched with pickup trucks, helpers, and clear delivery windows.",
-    accent: "brick",
+    title: "Instant city runs",
+    kicker: "Bike + car",
+    description: "Fast lightweight moves for documents, boxes, gifts, devices, and seller orders.",
   },
   {
-    title: "Shop orders",
-    tag: "Stock, bags, boxes",
-    description: "Retail sellers can move inventory from stores, suppliers, and small warehouses.",
-    accent: "nile",
+    title: "Furniture without friction",
+    kicker: "Pickup + helper",
+    description: "Bulky items get matched with the right vehicle size, timing, and handling notes.",
   },
   {
-    title: "Quick errands",
-    tag: "Docs, gifts, parcels",
-    description: "Bike and car drivers handle light city movement without turning every delivery into a project.",
-    accent: "taxi",
+    title: "Retail delivery layer",
+    kicker: "For sellers",
+    description: "Move inventory from shop to customer, supplier to branch, or warehouse to showroom.",
   },
   {
-    title: "Planned routes",
-    tag: "Multi-stop days",
-    description: "Schedule repeated transport for teams that need predictable routes without owning vehicles.",
-    accent: "palm",
+    title: "Scheduled logistics",
+    kicker: "Repeat routes",
+    description: "Plan daily, weekly, or multi-stop movement without building your own fleet.",
   },
 ];
 
-export const vehicleOptions = [
+export const showcaseModes = [
   {
-    code: "01",
-    name: "Bike",
-    load: "10 kg",
-    bestFor: "documents, pharmacy runs, small bags",
-    eta: "12-20 min",
+    vehicle: "Bike",
+    label: "Small item",
+    route: "Maadi to Zamalek",
+    load: "Documents and device box",
+    eta: "18 min",
+    accent: "blue",
   },
   {
-    code: "02",
-    name: "Car",
-    load: "80 kg",
-    bestFor: "boxes, fragile items, shopping bags",
-    eta: "20-35 min",
-  },
-  {
-    code: "03",
-    name: "Pickup",
-    load: "700 kg",
-    bestFor: "appliances, shop stock, furniture",
-    eta: "35-55 min",
-  },
-  {
-    code: "04",
-    name: "Truck",
-    load: "1T+",
-    bestFor: "room moves, office moves, heavy loads",
-    eta: "scheduled",
-  },
-];
-
-export const liveMoves = [
-  {
-    id: "EGM-2048",
-    from: "Nasr City",
-    to: "Sheikh Zayed",
-    item: "3-seat sofa",
-    vehicle: "Pickup",
-    status: "driver matched",
-  },
-  {
-    id: "EGM-2051",
-    from: "Maadi",
-    to: "Zamalek",
-    item: "retail boxes",
     vehicle: "Car",
-    status: "pickup confirmed",
+    label: "Retail drop",
+    route: "Heliopolis to New Cairo",
+    load: "4 packed customer orders",
+    eta: "32 min",
+    accent: "purple",
   },
   {
-    id: "EGM-2057",
-    from: "Alexandria",
-    to: "Cairo",
-    item: "office desks",
+    vehicle: "Pickup",
+    label: "Furniture",
+    route: "Nasr City to Sheikh Zayed",
+    load: "Sofa, table, mirror",
+    eta: "54 min",
+    accent: "pink",
+  },
+  {
     vehicle: "Truck",
-    status: "scheduled",
+    label: "Office move",
+    route: "Alexandria to Cairo",
+    load: "Desks, chairs, archive boxes",
+    eta: "Scheduled",
+    accent: "blue",
   },
 ];
 
-export const opsSteps = [
-  "Quote the load",
-  "Match the vehicle",
-  "Watch the route",
-  "Close the delivery",
+export const testimonials = [
+  {
+    quote: "Egymove feels like having a dispatch team without hiring one.",
+    name: "Mariam Hassan",
+    role: "Furniture showroom owner",
+  },
+  {
+    quote: "The brand should feel fast, calm, and premium. This finally does.",
+    name: "Youssef Adel",
+    role: "Marketplace operator",
+  },
+  {
+    quote: "Customers understand where the item is, and drivers understand the job.",
+    name: "Nour El Din",
+    role: "Operations lead",
+  },
 ];
 
-export const businessBenefits = [
-  "Seller pickups from store, home, or warehouse",
-  "Driver categories for bikes, cars, pickups, and trucks",
-  "Status updates customers can understand",
-  "Recurring routes for teams that move every week",
-];
+export const footerLinks = ["Cairo", "Giza", "Alexandria", "New Cairo", "6 October"];
