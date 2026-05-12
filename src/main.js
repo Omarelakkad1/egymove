@@ -1,20 +1,21 @@
 import {
   businessBenefits,
+  cityNodes,
   heroMetrics,
+  liveMoves,
+  moveTypes,
   navItems,
-  serviceCards,
+  opsSteps,
   vehicleOptions,
-  workflowSteps,
 } from "./data.js";
 import {
   businessPanel,
+  fleetSection,
   footer,
   header,
   hero,
-  safetySection,
-  serviceGrid,
-  vehicleTable,
-  workflow,
+  moveGrid,
+  operationsSection,
 } from "./components.js";
 
 const app = document.querySelector("#app");
@@ -22,17 +23,32 @@ const app = document.querySelector("#app");
 app.innerHTML = `
   ${header(navItems)}
   <main>
-    ${hero(heroMetrics)}
-    ${serviceGrid(serviceCards)}
-    ${vehicleTable(vehicleOptions)}
-    ${workflow(workflowSteps)}
+    ${hero(heroMetrics, cityNodes, liveMoves)}
+    ${moveGrid(moveTypes)}
+    ${fleetSection(vehicleOptions)}
+    ${operationsSection(liveMoves, opsSteps)}
     ${businessPanel(businessBenefits)}
-    ${safetySection()}
   </main>
   ${footer()}
 `;
 
 const form = document.querySelector("#quote");
+const status = form.querySelector(".quote-status");
+const vehicleButtons = document.querySelectorAll("[data-vehicle]");
+
+let selectedVehicle = vehicleOptions[2].name;
+
+vehicleButtons.forEach((button) => {
+  if (button.dataset.vehicle === selectedVehicle) {
+    button.classList.add("is-selected");
+  }
+
+  button.addEventListener("click", () => {
+    selectedVehicle = button.dataset.vehicle;
+    vehicleButtons.forEach((item) => item.classList.toggle("is-selected", item === button));
+    status.textContent = `${selectedVehicle} lane selected. Add route details to estimate the move.`;
+  });
+});
 
 form.addEventListener("submit", (event) => {
   event.preventDefault();
@@ -41,7 +57,6 @@ form.addEventListener("submit", (event) => {
   const pickup = data.get("pickup") || "your pickup";
   const dropoff = data.get("dropoff") || "your drop-off";
   const itemSize = data.get("item-size");
-  const status = form.querySelector(".quote-status");
 
-  status.textContent = `Route saved: ${itemSize} from ${pickup} to ${dropoff}`;
+  status.textContent = `${itemSize} from ${pickup} to ${dropoff} is queued for the ${selectedVehicle} lane.`;
 });
